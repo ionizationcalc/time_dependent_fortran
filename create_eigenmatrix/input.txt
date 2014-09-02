@@ -1,0 +1,8 @@
+"/Users/ccai/Works/workspace/computational/ionization/t-dpen-ioni-Fortran/creat_eigenmatrix/chianti_7_te501/"
+501
+
+
+################################################################################
+#1. The first line is the path where includes ionrecomb_rate.dat file.
+#2. The second line defines the temperature sample points.
+################################################################################
