@@ -1,0 +1,20 @@
+"1. Set switch_eqi. If it starts from ionization equilibrium, then .T.:"
+T
+"2. Set switch_log. Save logfiles:"
+F
+"3. Set the mode:"
+3
+"4. Set the accuracy for mode 2:"
+1.0d-05
+"5. Set the accuracy for mode 3:"
+0.999
+"6. Set elements for calculation:"
+14
+2,6,7,8,10,11,12,13,14,16,18,20,26,28
+"7. Set worksapce path: "
+'/path... to ... eigen matrix/chianti_7_te501/'
+'/path... to ... streamlines/streamline.dat'
+'/path... to ... initial ionization states/inicondition.dat'
+'/path... to ... workspace/'
+"8. Set jobname"
+'string'
