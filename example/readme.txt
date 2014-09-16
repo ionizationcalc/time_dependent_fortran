@@ -9,21 +9,22 @@ Update:
 -------------------------------------------------------------------------------
 1. Prepared files
 -------------------------------------------------------------------------------
-(a) 'streamline.dat' is unformatted f77 format, which including four lines:
-The first line: n, one integer variable, defines the size of the following one dimentional arraies;
-The second line: doulb real array, te(n) means the temperature history (unit: K);
-The third line: double real array, ne(n) means the electron history (unit: cm^-3);
-The 4th line: double real array, time(n) (unit: s).
+(a)‘te_ne_history.dat’ is used to define the temperature and electron density histories. The data structure including at least five lines:
+The first line define how many records contained in this file.
+Then each four lines define one record, which includes: size, Te, ne, and time.
+size: n, integer, defines the size of the following one diminutional arrays;
+Temperature: te(n), one dimensional double real array, defines the temperature history (unit: K);
+Electron density: ne(n), one dimensional double real array, defines the electron history (unit: cm^-3);
+Time: time(n), double real array, define time series (unit: s)
 
 (b) 'inicondition.dat'
 If set starting from ionization equilibrium, then this file is ignored.
 
-(c) 'input.txt'
-Define all parameters required in calculations;
+(c) The folder containing all eigen matirx.
+Such as the folder ‘../chianti_7_te501/‘, which is calculated according to chianti 7.
 
-(d) all files including eigen matirx.
-Such as the folder '../chianti_7_te501/'
-
+(d) 'input.txt'
+Define all parameters required in calculations.
 -------------------------------------------------------------------------------
 2. Compare and Run
 -------------------------------------------------------------------------------
