@@ -327,9 +327,9 @@
       real*8 conce_ini(30,30)
       logical switch_eqi
 
-      open(11,file=trim(file_streamline),form="unformatted")
+      open(11,file=trim(file_streamline),action="read")
 !         the total number of streamlines
-      read(11)nlines_total
+      read(11,*)nlines_total
 
 !         load initical fraction if switch_eqi = .f.
       if(.not. switch_eqi)then
@@ -352,16 +352,16 @@
 !         openfile for the current process
       myid = id_now-1
       write(char_myid,'(i04)')myid
-      open(12,file=trim(file_streamline)//char_myid,form='unformatted')
-      write(12)nlines_pnode
+      open(12,file=trim(file_streamline)//char_myid,action="read")
+      write(12,*)nlines_pnode
 
       do 21 ip = 1,nlines_pnode    
 !         read one record from file '11'            
-      read(11)ntime
+      read(11,*)ntime
       allocate(te(ntime),rho(ntime),time(ntime))      
-      read(11)te
-      read(11)rho
-      read(11)time
+      read(11,*)te
+      read(11,*)rho
+      read(11,*)time
 !         write one record into file '12'
       write(12)ntime
       write(12)te
@@ -389,11 +389,11 @@
 
       do 30 icycle = ip, nlines_total
 !         read one record from file '11' 
-      read(11)ntime
+      read(11,*)ntime
       allocate(te(ntime),rho(ntime),time(ntime))      
-      read(11)te
-      read(11)rho
-      read(11)time
+      read(11,*)te
+      read(11,*)rho
+      read(11,*)time
 !         write one record into file '12'
       write(12)ntime
       write(12)te
