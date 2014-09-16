@@ -1,0 +1,20 @@
+"1. Set logical variable ‘switch_eqi’. If the calculation starts from ionization equilibrium, then it is .T.:"
+T
+"2. Set logical variable ‘switch_log’. Save log-files:"
+F
+"3. Select the solver modes. Recommend mode 3:"
+3
+"4. If select mode 2, then set the accuracy in mode 2:"
+1.0d-05
+"5. If select mode 3, then set the accuracy for mode 3:"
+0.999
+"6. Set elements for calculation. The first line defines the total number of elements, and the second line lists the atomic number of them"
+14
+2,6,7,8,10,11,12,13,14,16,18,20,26,28
+"7. Set worksapce path: "
+'/Users/ccai/Works/workspace/computational/ionization/t-dpen-ioni-Fortran/time_dependent_fortran/example/chianti_7_te501/'
+'/Users/ccai/Works/workspace/computational/ionization/t-dpen-ioni-Fortran/time_dependent_fortran/example/te_ne_history.dat'
+'/Users/ccai/Works/workspace/computational/ionization/t-dpen-ioni-Fortran/time_dependent_fortran/example/inicondition.dat'
+'/Users/ccai/Works/workspace/computational/ionization/t-dpen-ioni-Fortran/time_dependent_fortran/example/'
+"8. Set jobname"
+'testjob001'
