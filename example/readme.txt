@@ -26,7 +26,7 @@ Such as the folder ‘../chianti_7_te501/‘, which is calculated according to c
 (d) 'input.txt'
 Define all parameters required in calculations.
 -------------------------------------------------------------------------------
-2. Compare and Run
+2. Compile and Run
 -------------------------------------------------------------------------------
 mpif90 -mkl -O3 time_depen_ionization.f90 -o nei_ionic.out
 
