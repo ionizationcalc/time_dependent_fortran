@@ -13,8 +13,8 @@ F
 2,6,7,8,10,11,12,13,14,16,18,20,26,28
 "7. Set worksapce path: "
 '/path... to ... eigen matrix/chianti_7_te501/'
-'/path... to ... streamlines/streamline.dat'
+'/path... to ... temperature and density histories/te_ne_historyfile.dat'
 '/path... to ... initial ionization states/inicondition.dat'
 '/path... to ... workspace/'
-"8. Set jobname"
+"8. Set output file name"
 'string'
