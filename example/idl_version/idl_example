@@ -1,0 +1,3 @@
+Excuate the follow commond in idl will return iron fractions and save them in 'jog0917a.sav' file. 
+SUBR_TIMEDEPEN_EIGEN,26,'/Users/ccai/Works/workspace/computational/ionization/t-dpen-ioni-Fortran/time_dependent_fortran/example/chianti_7_te501/',501,'/Users/ccai/Works/workspace/computational/ionization/t-dpen-ioni-Fortran/time_dependent_fortran/example/te_ne_history.dat','job0917a.sav',/log
+
