@@ -10,15 +10,15 @@ Update:
 1. Prepared files
 -------------------------------------------------------------------------------
 (a)‘te_ne_history.dat’ is used to define the temperature and electron density histories. The data structure including at least five lines:
-The first line define how many records contained in this file.
+The first line defines how many records contained in this file.
 Then each four lines define one record, which includes: size, Te, ne, and time.
 size: n, integer, defines the size of the following one diminutional arrays;
 Temperature: te(n), one dimensional double real array, defines the temperature history (unit: K);
 Electron density: ne(n), one dimensional double real array, defines the electron history (unit: cm^-3);
-Time: time(n), double real array, define time series (unit: s)
+Time: time(n), double real array, defines time series (unit: s)
 
 (b) 'inicondition.dat'
-If set starting from ionization equilibrium, then this file is ignored.
+If the running starts from ionization equilibrium, then this file is ignored.
 
 (c) The folder containing all eigen matirx.
 Such as the folder ‘../chianti_7_te501/‘, which is calculated according to chianti 7.
@@ -31,6 +31,8 @@ Define all parameters required in calculations.
 mpif90 -mkl -O3 time_depen_ionization.f90 -o nei_ionic.out
 
 mpiexe -np 4 ./nei_ionic.out
+
+Here, '-mkl' means intel mathlib. If one use another Math-lib, the argument of compiling should be changed.
 
 -------------------------------------------------------------------------------
 3. Output
