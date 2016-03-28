@@ -14,6 +14,9 @@
 !       Add hydrogen in elements list.
 !       2014-05-21
 !       Bugs modified: func_eqi did not return fraction for natom = 1.
+!       2016-03-20
+!       Read te_arr form data files.
+!-------------------------------------------------------------------------------
 
 program creat_eigen_matrix
     implicit none
@@ -51,7 +54,6 @@ program creat_eigen_matrix
 !----------------------------------------------------------------------
     open(11,file='input.txt')
     read(11,*)cpath
-    read(11,*)nte
     close(11)
 
     cfile=trim(cpath)//'ionrecomb_rate.dat'
@@ -61,20 +63,18 @@ program creat_eigen_matrix
 !----------------------------------------------------------------------
 !       (1) read ionization rate 'c' and recombination rate 'r'
 !----------------------------------------------------------------------
-!       set variables
-    allocate(te_arr(nte),c_ori(30,30,nte),r_ori(30,30,nte))
+
 
 !       open file and read    
     open(15,file=cfile,form='unformatted')
+    read(15)nte
+!       set variables
+    allocate(te_arr(nte),c_ori(30,30,nte),r_ori(30,30,nte))
+
+    read(15)te_arr
     read(15)c_ori
     read(15)r_ori
     close(15)
-
-!       temperature range relative 'c' and 'r'    
-    dte = 5.0d0/dfloat(nte-1)
-    do i = 1,nte
-        te_arr(i) = 10.0d0**(dte*dfloat(nte)+4.0d0)
-    enddo
   
 !--------------------------------------------------------------------
 !       (2) computer eigen values
