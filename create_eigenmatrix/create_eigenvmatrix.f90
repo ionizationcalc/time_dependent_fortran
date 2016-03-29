@@ -16,6 +16,7 @@
 !       Bugs modified: func_eqi did not return fraction for natom = 1.
 !       2016-03-20
 !       Read te_arr form data files.
+!       Add .txt output files.
 !-------------------------------------------------------------------------------
 
 program creat_eigen_matrix
@@ -29,7 +30,7 @@ program creat_eigen_matrix
 
 !       atom name list
     integer:: nelems
-    parameter(nelems = 15)
+    parameter(nelems = 28)
     integer,dimension(nelems):: arr_elemt
     character(len=2),dimension(nelems):: char_elemt
 
@@ -57,8 +58,12 @@ program creat_eigen_matrix
     close(11)
 
     cfile=trim(cpath)//'ionrecomb_rate.dat'
-    char_elemt(1:nelems)= (/'H','He','C','N','O','Ne','Na','Mg','Al','Si','S','Ar','Ca','Fe','Ni'/)
-    arr_elemt(1:nelems) = (/1,2,6,7,8,10,11,12,13,14,16,18,20,26,28/)
+    data char_elemt /'h','he','li','be','b','c','n','o','f','ne',&
+      'na','mg','al','si','p','s','ci','ar',&
+      'k','ca','sc','ti','v','cr','mn','fe','co','ni'/
+    do i = 1, nelems
+      arr_elemt(i) = i
+    end do
 
 !----------------------------------------------------------------------
 !       (1) read ionization rate 'c' and recombination rate 'r'
@@ -86,7 +91,7 @@ program creat_eigen_matrix
 !           atom number is 'natom' and ionizatio states is up to 'natom+1'
         natom = arr_elemt(ichemi)
 !           elemt = func_elemt_iv(natom)
-        write(*,*),natom
+        write(*,*),'natom = ',natom
     
 !           define the size of local variables according to the atom 
 !           number 'natom+1'
@@ -162,6 +167,8 @@ program creat_eigen_matrix
 !          save results
 !      ----------------------------------------------------------------
        open(15,file=trim(cpath)//trim(char_elemt(ichemi))//'eigen.dat',form='unformatted')
+       write(15)nte, nelems
+       write(15)te_arr
        write(15)eqistate
        write(15)eigenvalues
        write(15)eigenvector
@@ -169,6 +176,18 @@ program creat_eigen_matrix
        write(15)c_rate
        write(15)r_rate
        close(15)
+
+!          save as txt files
+       open(16,file=trim(cpath)//trim(char_elemt(ichemi))//'eigen.txt')
+       write(16,*)nte, nelems
+       write(16,*)te_arr
+       write(16,*)eqistate
+       write(16,*)eigenvalues
+       write(16,*)eigenvector
+       write(16,*)eigenvector_invers
+       write(16,*)c_rate
+       write(16,*)r_rate
+       close(16)
 
 !      ----------------------------------------------------------------      
 !          release variables

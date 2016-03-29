@@ -1,10 +1,14 @@
 ;  Name:
 ;    pro_wrtie_ionizrecomb_rate
-;  purpose:
-;    write ionization rate and recombination rate into unformatted file
-;  use:
+;  Purpose:
+;    write ionization rate and recombination rate into txt files.
+;  Use:
 ;    chianti database
 ;    ssw
+;  Input parameters:
+;    nte, the grid number of temperature (optional, default = 501);
+;    te_low (and te_high). The temperature range of this table.
+;    (optional, log10(te), default = 4.0 (and 9.0));
 ;  History:
 ;    The last version calculated rates using fortran routines 
 ;    'cal_ion_recomb_rates' and database file 'eii_files' (from Yuen-Kun Ko).
