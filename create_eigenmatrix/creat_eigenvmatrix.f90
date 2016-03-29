@@ -66,14 +66,15 @@ program creat_eigen_matrix
 
 
 !       open file and read    
-    open(15,file=cfile,form='unformatted')
-    read(15)nte
+    open(15,file=cfile,status="old")
+    read(15,*)nte
+    print*, 'nte = ', nte
 !       set variables
     allocate(te_arr(nte),c_ori(30,30,nte),r_ori(30,30,nte))
 
-    read(15)te_arr
-    read(15)c_ori
-    read(15)r_ori
+    read(15,*)te_arr
+    read(15,*)c_ori
+    read(15,*)r_ori
     close(15)
 
 !--------------------------------------------------------------------

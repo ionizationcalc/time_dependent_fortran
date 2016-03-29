@@ -25,7 +25,7 @@ pro pro_write_ionizrecomb_rate, nte=nte, te_low=te_low, te_high=te_high
   ;
   ; output file name
   ; 
-  unform_file = 'ionrecomb_rate.dat'
+  output_file = 'ionrecomb_rate.dat'
 
   ; optional parameters
   if(not keyword_set(nte))then begin
@@ -78,11 +78,11 @@ pro pro_write_ionizrecomb_rate, nte=nte, te_low=te_low, te_high=te_high
   endfor
   
   ;  write into file
-  openw,lun,/get_lun,unform_file,/f77_unformatted
-  writeu,lun,nte
-  writeu,lun,te_arr
-  writeu,lun,c
-  writeu,lun,r
+  openw,lun,/get_lun,output_file
+  printf,lun,nte
+  printf,lun,te_arr
+  printf,lun,c
+  printf,lun,r
   free_lun,lun
   
   print,'normal stop'
