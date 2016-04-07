@@ -167,7 +167,7 @@ program creat_eigen_matrix
 !          save results
 !      ----------------------------------------------------------------
        open(15,file=trim(cpath)//trim(char_elemt(ichemi))//'eigen.dat',form='unformatted')
-       write(15)nte, nelems
+       write(15)nte, natom
        write(15)te_arr
        write(15)eqistate
        write(15)eigenvalues
@@ -179,7 +179,7 @@ program creat_eigen_matrix
 
 !          save as txt files
        open(16,file=trim(cpath)//trim(char_elemt(ichemi))//'eigen.txt')
-       write(16,*)nte, nelems
+       write(16,*)nte, natom
        write(16,*)te_arr
        write(16,*)eqistate
        write(16,*)eigenvalues
