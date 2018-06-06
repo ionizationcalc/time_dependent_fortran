@@ -1,20 +1,20 @@
-"1. Set logical variable ‘switch_eqi’. If the calculation starts from ionization equilibrium, then it is .T.:"
+"1. Set switch_eqi = T to starts from ionization equilibrium:"
 T
-"2. Set logical variable ‘switch_log’. Save log-files:"
+"2. Set switch_log = T to save logfiles:"
 F
-"3. Select the solver modes. Recommend mode 3:"
+"3. Choose time-advance mode: 2 is explicit double-steps, and 3 is for eigenvalue method"
 3
-"4. If select mode 2, then set the accuracy in mode 2:"
+"4. Set safety/accracy factor in mode 2: default = 1.0e-5"
 1.0d-05
-"5. If select mode 3, then set the accuracy for mode 3:"
+"5. Set safety/accracy factor in mode 3: defautl = 0.999 "
 0.999
-"6. Set elements for calculation. The first line defines the total number of elements, and the second line lists the atomic number of them"
-14
-2,6,7,8,10,11,12,13,14,16,18,20,26,28
+"6. Set number (and the list) of elements to be calculated:"
+2
+2,26
 "7. Set worksapce path: "
-'/Users/ccai/Works/workspace/computational/ionization/t-dpen-ioni-Fortran/time_dependent_fortran/example/chianti_7_te501/'
-'/Users/ccai/Works/workspace/computational/ionization/t-dpen-ioni-Fortran/time_dependent_fortran/example/te_ne_history.dat'
-'/Users/ccai/Works/workspace/computational/ionization/t-dpen-ioni-Fortran/time_dependent_fortran/example/inicondition.dat'
-'/Users/ccai/Works/workspace/computational/ionization/t-dpen-ioni-Fortran/time_dependent_fortran/example/'
-"8. Set jobname"
-'testjob001'
+'/Users/chshen/Works/Project/ionization/time_dependent_fortran/eigendata/chianti_8_07/'
+'/Users/chshen/Works/Project/ionization/time_dependent_fortran/example/te_ne_history.dat'
+'/Users/chshen/Works/Project/ionization/time_dependent_fortran/example/inicondition.dat'
+'/Users/chshen/Works/Project/ionization/time_dependent_fortran/example/'
+"8. Set base-name of output files"
+'Test_001'

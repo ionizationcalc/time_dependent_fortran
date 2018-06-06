@@ -4,7 +4,7 @@ Purpose:
 This example show how to run this code to get the non-equilibrium ionization states.
 
 Update:
-2014-09-14
+2018-06-05
 
 -------------------------------------------------------------------------------
 1. Prepared files
@@ -28,11 +28,11 @@ Define all parameters required in calculations.
 -------------------------------------------------------------------------------
 2. Compile and Run
 -------------------------------------------------------------------------------
-mpif90 -mkl -O3 time_depen_ionization.f90 -o nei_ionic.out
+mpif90 <-mkl> time_depen_ionization.f90 -o nei_ionic.out
+
+Compile option: add -mkl to use Intel Math Kernel Library.
 
 mpiexe -np 4 ./nei_ionic.out
-
-Here, '-mkl' means intel mathlib. If one use another Math-lib, the argument of compiling should be changed.
 
 -------------------------------------------------------------------------------
 3. Output

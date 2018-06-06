@@ -45,8 +45,10 @@
 !         nte is the total number of temperature sample points in the 
 !         ionization rate table and eigenmatrix tables. The Te ranges 
 !         from 10^4 K to 10^9 K.
-      parameter(nte=501)
-      parameter(dlogte=5.0d0/dfloat(nte-1))
+!      parameter(nte=501)
+!      parameter(dlogte=5.0d0/dfloat(nte-1))
+      integer nte
+      real*8 dlogte
 !         eigen_type is used to save eigen values and eigen vectors
 !         for each chemical element. c is ionization rate, and r is 
 !         recombination rate. eqis saved ion fractions for equilibrium
@@ -420,11 +422,19 @@
       use mod_eigen_matrix
       implicit double precision(a-h,o-z)
       character(len=150)datafile,path_eigen
+      integer natom_table
+      real*8, allocatable:: te_arr(:)
 !     -----------------------------------------------------------------
 !
       do 10 ichemi = 1,n_element
       natom = index_element(ichemi)
 !
+      datafile = trim(path_eigen)//trim(char_element(ichemi))//&
+      'eigen.dat'
+      open(11,file=trim(datafile),form='unformatted',action='read')
+      read(11)nte, natom_table
+!     Allocate array      
+      allocate(te_arr(nte))
       allocate(eigen(ichemi)%eqis(natom+1,nte),&
                eigen(ichemi)%evalues(natom+1,nte),&
                eigen(ichemi)%evector(natom+1,natom+1,nte),&
@@ -432,9 +442,7 @@
                eigen(ichemi)%c(natom+1,nte),&
                eigen(ichemi)%r(natom+1,nte))
 !
-      datafile = trim(path_eigen)//trim(char_element(ichemi))//&
-      'eigen.dat'
-      open(11,file=trim(datafile),form='unformatted',action='read')
+      read(11)te_arr
       read(11)eigen(ichemi)%eqis
       read(11)eigen(ichemi)%evalues
       read(11)eigen(ichemi)%evector
@@ -442,6 +450,11 @@
       read(11)eigen(ichemi)%c
       read(11)eigen(ichemi)%r
       close(11)
+
+!     intervel of temperature grid      
+      dlogte=(dlog10(te_arr(nte)) - dlog10(te_arr(1)))/dfloat(nte-1)
+!     Release te_arr
+      deallocate(te_arr)
    10 continue
 !
       return
