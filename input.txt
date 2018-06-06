@@ -8,7 +8,7 @@ F
 1.0d-05
 "5. Set safety/accracy factor in mode 3: defautl = 0.999 "
 0.999
-"6. Set number (and the list) of elements to be computed:"
+"6. Set number (and the list) of elements to be calculated:"
 14
 2,6,7,8,10,11,12,13,14,16,18,20,26,28
 "7. Set worksapce path: "
