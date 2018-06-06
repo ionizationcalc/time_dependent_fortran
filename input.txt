@@ -1,14 +1,14 @@
-"1. Set switch_eqi. If it starts from ionization equilibrium, then .T.:"
+"1. Set switch_eqi = T to starts from ionization equilibrium:"
 T
-"2. Set switch_log. Save logfiles:"
+"2. Set switch_log = T to save logfiles:"
 F
-"3. Set the mode:"
+"3. Choose time-advance mode: 2 is explicit double-steps, and 3 is for eigenvalue method"
 3
-"4. Set the accuracy for mode 2:"
+"4. Set safety/accracy factor in mode 2: default = 1.0e-5"
 1.0d-05
-"5. Set the accuracy for mode 3:"
+"5. Set safety/accracy factor in mode 3: defautl = 0.999 "
 0.999
-"6. Set elements for calculation:"
+"6. Set number (and the list) of elements to be computed:"
 14
 2,6,7,8,10,11,12,13,14,16,18,20,26,28
 "7. Set worksapce path: "
@@ -16,5 +16,5 @@ F
 '/path... to ... temperature and density histories/te_ne_historyfile.dat'
 '/path... to ... initial ionization states/inicondition.dat'
 '/path... to ... workspace/'
-"8. Set output file name"
+"8. Set base-name of output files"
 'string'
