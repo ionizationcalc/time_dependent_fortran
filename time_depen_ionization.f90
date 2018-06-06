@@ -40,7 +40,7 @@
       character(len=2):: char_element(n_element)
       integer index_element(n_element)
       data index_element /1,2,6,7,8,10,11,12,13,14,16,18,20,26,28/
-      data char_element /'He','He','C','N','O','Ne','Na','Mg','Al',&
+      data char_element /'H','He','C','N','O','Ne','Na','Mg','Al',&
       'Si','S','Ar','Ca','Fe','Ni'/
 !         nte is the total number of temperature sample points in the 
 !         ionization rate table and eigenmatrix tables. The Te ranges 
