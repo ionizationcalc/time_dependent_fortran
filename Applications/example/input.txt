@@ -13,8 +13,8 @@ F
 2,26
 "7. Set worksapce path: "
 '/Users/chshen/Works/Project/ionization/time_dependent_fortran/eigendata/chianti_8_07/'
-'/Users/chshen/Works/Project/ionization/time_dependent_fortran/example/te_ne_history.dat'
-'/Users/chshen/Works/Project/ionization/time_dependent_fortran/example/inicondition.dat'
-'/Users/chshen/Works/Project/ionization/time_dependent_fortran/example/'
+'/Users/chshen/Works/Project/ionization/time_dependent_fortran/Applications/example/te_ne_history.dat'
+'/Users/chshen/Works/Project/ionization/time_dependent_fortran/Applications/example/inicondition.dat'
+'/Users/chshen/Works/Project/ionization/time_dependent_fortran/Applications/example/'
 "8. Set base-name of output files"
 'Test_001'

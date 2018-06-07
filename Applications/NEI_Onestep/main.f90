@@ -65,8 +65,8 @@ program main
   !----------------------------------------------------------------------------
   ! Example (1): Define temperature, density.
   !----------------------------------------------------------------------------
-  te_start = 1.0e6       ! (K)
-  te_end   = 10.0**6.8  ! (K)
+  te_start = 1.0e6       ! (K) used to set the initial charge state 
+  te_end   = 10.0**6.8   ! (K)
   rhone = 1.0e7          ! (cm^-3)
 
   !
