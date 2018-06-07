@@ -20,24 +20,23 @@ program main
   use mod_input_parameter
   implicit none
   ! Ion charge states
-  real*8, dimension(30,30):: conce_ini,conce_nei,conce_ei,conce_temp_ini
+  real*8, dimension(30,30):: conce_ini,conce_nei,conce_ei
   integer, allocatable:: i_chemi_eigen(:)
 
   ! Local variables
-  real*8:: dt
-  integer:: ii, ichemi, natom, jelem
+  real*8:: time
+  integer:: ii, ichemi, natom, jelem, ion
+  real*8:: oversum
 
-  ! Jin-Yi's cases
+  ! Te cases
   real*8:: te_start, te_end, rhone
   real*8:: te_arr(2), ne_arr(2)
   integer:: itime
 
-  ! Test EI output
+  ! Test output
   integer:: i
-  integer, parameter:: nsamp=401
-  real*8:: tesample(nsamp), fe8sample(nsamp)
-  real*8:: fesample(27, nsamp)
-  real*8:: conce_feei(27)
+  integer, parameter:: ntime=10
+  real*8, parameter:: dt0 = 0.75
 
   !
   ! (1) Read input parameters
@@ -64,12 +63,11 @@ program main
   call sub_read_eigen_matrix(path_eigen)
 
   !----------------------------------------------------------------------------
-  ! Example (1): Define temperature, density and dt.
+  ! Example (1): Define temperature, density.
   !----------------------------------------------------------------------------
-  te_start = 101165.0    ! (K)
-  te_end   = 10.0**6.50  ! (K)
-  rhone = 1.0e8          ! (cm^-3)
-  dt = 1000.0            ! (s)
+  te_start = 1.0e6       ! (K)
+  te_end   = 10.0**6.8  ! (K)
+  rhone = 1.0e7          ! (cm^-3)
 
   !
   ! (1-1) Set initial (and final) condition: equilibrium ionization states
@@ -81,55 +79,52 @@ program main
 
   do jelem = 1,nelem
     natom = natom_list(jelem)
-    print*, 'jelem=',jelem, 'natom=', natom
+    print*, "Initial State (natom=", natom, ")"
 
-    ! Initial fraction in EI cases
+    ! Set initial charge states: case 1 or case 2
+    ! case 1: Initial fraction in EI cases
     call func_equilibrium_eigen(i_chemi_eigen(jelem),&
     natom,te_start,conce_ini(1:natom+1,natom))
-    print*, conce_ini(1:natom+1, natom)
 
-    ! Final fraction in EI cases
+    ! case 2: Initial fraction using random number
+    !do ion = 1, natom+1
+    !  call RANDOM_NUMBER(conce_ini(ion, natom))
+    !enddo
+    !oversum = sum(conce_ini(1:natom+1, natom))
+    !do ion = 1, natom+1
+    !  conce_ini(ion, natom) = conce_ini(ion, natom)/oversum
+    !enddo
+
+    print*, 'sta: ', conce_ini(1:natom+1, natom)
+
+    ! Get final charge states in EI cases
     call func_equilibrium_eigen(i_chemi_eigen(jelem),&
     natom,te_end,conce_ei(1:natom+1,natom))
+    print*, 'end_ei: ',conce_ei(1:natom+1, natom)
   end do
 
   !
-  ! (1-2) Enter the main loop
-  !
-  ! The first step: Te = Te_end(e.g.,10^6)
-  call sub_solve_ionic_onestep(nelem, natom_list, i_chemi_eigen, &
-            te_arr, ne_arr, dt, &
-            conce_ini, conce_nei)
-  conce_temp_ini = conce_nei
-
-  !
-  ! (1-3) Print results
-  !
-  do jelem = 1, nelem
-    natom = natom_list(jelem)
-    print*, '---------------------------------'
-    print*, 'One step, atomic index = ',natom
-    print*, '---------------------------------'
-    print*, 'dt = ', dt
-    print*, 'Initial time:'
-    print*, conce_ini(1:natom+1, natom)
-    print*, 'Final time: NEI'
-    print*, conce_nei(1:natom+1, natom)
-    print*, 'Final time: EI'
-    print*, conce_ei(1:natom+1, natom)
-  end do
-
-  !
-  ! (1-4) Save results
+  ! (1-2) Enter the main loop for different time
   !
   open(12, file='test_onestep_ei.dat', form='unformatted')
-  write(12)nelem
-  write(12)dt
-  write(12)te_start
-  write(12)te_end
+  write(12)te_start, te_end, rhone
   write(12)conce_ini
-  write(12)conce_nei
   write(12)conce_ei
+  write(12)ntime
+  do itime = 1, ntime
+    time = 10.0**(itime*dt0)
+    call sub_solve_ionic_onestep(nelem, natom_list, i_chemi_eigen, &
+            te_arr, ne_arr, time, &
+            conce_ini, conce_nei)
+    write(12)time
+    write(12)conce_nei
+  ! print results
+    do jelem = 1, nelem
+      natom = natom_list(jelem)
+      print*, "itime=", itime, "time=", time
+      print*, conce_nei(1:natom+1, natom)
+    end do
+  enddo
   close(12)
 
   !----------------------------------------------------------------------------
