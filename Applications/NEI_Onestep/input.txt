@@ -1,0 +1,5 @@
+"Set elements for calculation:"
+2
+2, 26
+"Set the path of tables: "
+'/Users/chshen/Works/Project/ionization/time_dependent_fortran/eigendata/chianti_8_07/'
