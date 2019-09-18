@@ -17,6 +17,8 @@
 !       2016-03-20
 !       Read te_arr form data files.
 !       Add .txt output files.
+!       2019-09-17
+!       Add two elements'Cu' and 'Zn'.
 !-------------------------------------------------------------------------------
 
 program creat_eigen_matrix
@@ -30,7 +32,7 @@ program creat_eigen_matrix
 
 !       atom name list
     integer:: nelems
-    parameter(nelems = 28)
+    parameter(nelems = 30)
     integer,dimension(nelems):: arr_elemt
     character(len=2),dimension(nelems):: char_elemt
 
@@ -58,9 +60,9 @@ program creat_eigen_matrix
     close(11)
 
     cfile=trim(cpath)//'ionrecomb_rate.dat'
-    data char_elemt /'h','he','li','be','b','c','n','o','f','ne',&
-      'na','mg','al','si','p','s','ci','ar',&
-      'k','ca','sc','ti','v','cr','mn','fe','co','ni'/
+    data char_elemt /'H','He','Li','Be','B','C','N','O','F','Ne',&
+      'Na','Mg','Al','Si','P','S','Ci','Ar',&
+      'K','Ca','Sc','Ti','V','Cr','Mn','Fe','Co','Ni', 'Cu', 'Zn'/
     do i = 1, nelems
       arr_elemt(i) = i
     end do
