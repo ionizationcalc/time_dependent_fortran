@@ -38,8 +38,10 @@ with PdfPages('./nei_example-plot.pdf') as pdf:
     plt.yscale("log")
     plt.ylim((1.0e-5, 1.0))
     plt.xlabel("Charge States")
-    plt.ylabel("Ion Fractions")
+    plt.xlabel("Charge State")
+    plt.ylabel("Ion Fraction (NEI:solid, EI:dotted)")
     
+    icolor = 0
     for ielem in range(30):
       natom = ielem + 1
       nstate = natom + 1
@@ -47,10 +49,14 @@ with PdfPages('./nei_example-plot.pdf') as pdf:
       ei_current = ei_conce[ielem]
       if (np.sum(ei_current) != 0):
         print(f"natom={natom}, ei={ei_current[0:nstate]}")
+        color_str = 'C{0:d}'.format(icolor)
         charge_state = np.linspace(1, nstate, nstate)
-        plt.plot(charge_state, ei_current[0:nstate], ls='dotted')
-        natom_str = "Natom={:d}".format(natom)
-        plt.plot(charge_state, nei_current[0:nstate], label=natom_str)
+        plt.plot(charge_state, ei_current[0:nstate], lw=1.5, ls='dotted', \
+          drawstyle='steps-mid', c=color_str)
+        natom_str = "iz={:d}".format(natom)
+        plt.plot(charge_state, nei_current[0:nstate], lw=0.5, \
+          drawstyle='steps-mid', c=color_str, label=natom_str)
+        icolor += 1
     plt.legend()
     pdf.savefig()  # saves the current figure into a pdf page
     plt.close()
